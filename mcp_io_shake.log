@@ -1,0 +1,19 @@
+输入: {"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"Cline","version":"3.72.0"}},"jsonrpc":"2.0","id":0}
+输出: {"jsonrpc":"2.0","id":0,"result":{"protocolVersion":"2025-11-25","capabilities":{"experimental":{},"prompts":{"listChanged":false},"resources":{"subscribe":false,"listChanged":false},"tools":{"listChanged":false}},"serverInfo":{"name":"Weather","version":"1.26.0"}}}
+输入: {"method":"notifications/initialized","jsonrpc":"2.0"}
+输入: {"method":"tools/list","jsonrpc":"2.0","id":1}
+STDERR: [03/15/26 21:39:59] INFO     Processing request of type            server.py:720
+STDERR:                              ListToolsRequest                                   
+输出: {"jsonrpc":"2.0","id":1,"result":{"tools":[{"name":"get_forecast","description":"\n    获取指定位置的天气预报数据。\n\n    基于 Open-Meteo API (https://open-meteo.com/en/docs)，无需 API key。\n\n    Args:\n        latitude: 纬度，范围 -90 到 90 (WGS84 坐标)\n        longitude: 经度，范围 -180 到 180 (WGS84 坐标)\n        hourly: 每小时天气变量，逗号分隔。常用值:\n            - temperature_2m: 2米高度温度\n            - relative_humidity_2m: 相对湿度\n            - precipitation: 降水量\n            - weather_code: 天气代码 (WMO)\n            - wind_speed_10m: 10米高度风速\n        daily: 每日天气变量聚合，逗号分隔。常用值:\n            - temperature_2m_max: 最高温度\n            - temperature_2m_min: 最低温度\n            - precipitation_sum: 日降水量\n            - weather_code: 天气代码\n            - sunrise/sunset: 日出日落时间\n        current: 当前天气条件变量，逗号分隔\n        timezone: 时区，默认为 'auto' (自动检测当地时区)，也可指定如 'Asia/Shanghai'\n        forecast_days: 预报天数，0-16天，默认为7天\n        temperature_unit: 温度单位，'celsius'(摄氏) 或 'fahrenheit'(华氏)\n\n    Returns:\n        包含以下键的字典:\n        - latitude, longitude: 位置坐标\n        - timezone: 时区\n        - hourly: 每小时数据 (包含 time 数组和各项天气变量)\n        - daily: 每日数据 (包含 date 数组和各项天气变量)\n        - current: 当前天气数据\n\n    Example:\n        获取北京7天预报:\n        get_forecast(latitude=39.9, longitude=116.4, timezone=\"Asia/Shanghai\")\n    ","inputSchema":{"properties":{"latitude":{"title":"Latitude","type":"number"},"longitude":{"title":"Longitude","type":"number"},"hourly":{"default":"temperature_2m,weather_code","title":"Hourly","type":"string"},"daily":{"default":"temperature_2m_max,temperature_2m_min,weather_code","title":"Daily","type":"string"},"current":{"default":"temperature_2m,weather_code","title":"Current","type":"string"},"timezone":{"default":"auto","title":"Timezone","type":"string"},"forecast_days":{"default":7,"title":"Forecast Days","type":"integer"},"temperature_unit":{"default":"celsius","title":"Temperature Unit","type":"string"}},"required":["latitude","longitude"],"title":"get_forecastArguments","type":"object"},"outputSchema":{"additionalProperties":true,"title":"get_forecastDictOutput","type":"object"}}]}}
+输入: {"method":"resources/list","jsonrpc":"2.0","id":2}
+STDERR:                     INFO     Processing request of type            server.py:720
+STDERR:                              ListResourcesRequest                               
+输出: {"jsonrpc":"2.0","id":2,"result":{"resources":[]}}
+输入: {"method":"resources/templates/list","jsonrpc":"2.0","id":3}
+STDERR:                     INFO     Processing request of type            server.py:720
+STDERR:                              ListResourceTemplatesRequest                       
+输出: {"jsonrpc":"2.0","id":3,"result":{"resourceTemplates":[]}}
+输入: {"method":"prompts/list","jsonrpc":"2.0","id":4}
+STDERR:                     INFO     Processing request of type            server.py:720
+STDERR:                              ListPromptsRequest                                 
+输出: {"jsonrpc":"2.0","id":4,"result":{"prompts":[]}}
